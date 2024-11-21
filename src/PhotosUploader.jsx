@@ -7,6 +7,18 @@ import iconTrash from './json/delete.json';
 function PhotosUploader({ addedPhotos, onChange }) {
     const [photoLink, setPhotoLink] = useState('');
 
+    let photos = [];
+    if (addedPhotos) {
+        console.log(addedPhotos)
+            try {
+                // Parse photos if it's a JSON string
+                photos = typeof addedPhotos === 'string' ? JSON.parse(addedPhotos) : addedPhotos;
+            } catch (err) {
+                console.error('Error parsing photos:', err);
+            }
+        
+    }
+
     async function addPhotoByLink(ev) {
         ev.preventDefault();
         const { data: filename } = await axios.post('/upload-by-link', { link: photoLink })
@@ -50,7 +62,7 @@ function PhotosUploader({ addedPhotos, onChange }) {
                 <button onClick={addPhotoByLink} className='bg-gray-200 px-4 rounded-2xl h-10 mt-2'>Add&nbsp;photo</button>
             </div>
             <div className='mt-2 grid gap-2 grid-cols-3 md:grid-cols-4 lg:grid-cols-6'>
-                {addedPhotos.length > 0 && addedPhotos.map(link => (
+                {photos.length > 0 && photos.map(link => (
                     <div className='h-32 flex relative' key={link}>
                         <img className='rounded-2xl w-full object-cover' src={link} alt="Added photos" />
                         <button onClick={ev => removePhoto(ev, link)} className='absolute bottom-1 right-1'>

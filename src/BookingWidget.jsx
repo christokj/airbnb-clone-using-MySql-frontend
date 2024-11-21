@@ -6,9 +6,9 @@ import axios from 'axios';
 // import { UserContext } from './UserContext.jsx';
 
 function BookingWidget({ place }) {
-    const [checkIn, setCheckIn] = useState('');
-    const [checkOut, setCheckOut] = useState('');
-    const [numberOfGuests, setNumberOfGuests] = useState('1');
+    const [check_in, setCheck_in] = useState('');
+    const [check_out, setCheck_out] = useState('');
+    const [number_of_guests, setNumber_of_guests] = useState('1');
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [redirect, setRedirect] = useState('');
@@ -21,17 +21,17 @@ function BookingWidget({ place }) {
     }, [user]);
 
     let numberOfNights = 0;
-    if (checkIn && checkOut) {
-        numberOfNights = differenceInCalendarDays(new Date(checkOut), new Date(checkIn));
+    if (check_in && check_out) {
+        numberOfNights = differenceInCalendarDays(new Date(check_out), new Date(check_in));
     }
-
     async function bookThisPlace() {
         const response = await axios.post('./bookings', {
-            checkIn, checkOut, numberOfGuests, name, phone,
-            place: place._id, price: numberOfNights * place.price,
+            check_in, check_out, number_of_guests, name, phone,
+            place: place.title, price: numberOfNights * place.price,
         });
-        const bookingId = response.data._id;
-        setRedirect(`/account/bookings/${bookingId}`);
+        // const bookingId = response.data._id;
+        // setRedirect(`/account/bookings/${bookingId}`);
+        alert('Place booked')
     }
 
     if (redirect) {
@@ -48,21 +48,21 @@ function BookingWidget({ place }) {
                     <div className='py-3 px-4 '>
                         <label>Check in: </label>
                         <input type="date"
-                            value={checkIn}
-                            onChange={ev => setCheckIn(ev.target.value)} />
+                            value={check_in}
+                            onChange={ev => setCheck_in(ev.target.value)} />
                     </div>
                     <div className='py-4 px-4'>
                         <label>Check out: </label>
-                        <input type="date" value={checkOut}
-                            onChange={ev => setCheckOut(ev.target.value)} />
+                        <input type="date" value={check_out}
+                            onChange={ev => setCheck_out(ev.target.value)} />
                     </div>
                 </div>
                 <div>
                     <div className='py-4 px-4 border-t'>
                         <label>Number of guests: </label>
                         <input type="number"
-                            value={numberOfGuests}
-                            onChange={ev => setNumberOfGuests(ev.target.value)} />
+                            value={number_of_guests}
+                            onChange={ev => setNumber_of_guests(ev.target.value)} />
                     </div>
                     {numberOfNights > 0 && (
                         <div className='py-3 px-4 border-t'>

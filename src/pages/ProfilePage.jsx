@@ -17,13 +17,12 @@ function ProfilePage() {
     setRedirect('/');
     setUser(null);
   }
-  console.log(ready)
-  if (!ready) {
-    return 'Loading...';
-  }
-  if (ready && !user && !redirect) {
+  console.log(ready, user, redirect)
+ 
+  if (!ready && !user.length && !redirect) {
     return <Navigate to={'/login'} />
   }
+ 
   if (redirect) {
     return <Navigate to={redirect} />
   }
@@ -32,7 +31,7 @@ function ProfilePage() {
       <AccountNav />
       {subpage === 'profile' && (
         <div className='text-center max-w-lg mx-auto my-5'>
-          Logged in as {user.name} ({user.email}) <br />
+          Logged in as {user.data.email } <br />
           <button onClick={logout} className='primary max-w-sm mt-2'>Logout</button>
         </div>
       )}

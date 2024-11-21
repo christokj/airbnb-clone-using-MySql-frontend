@@ -44,7 +44,7 @@ console.log(perks)
                     </div>
                     Check in: {place.check_in} <br />
                     Check out: {place.check_out} <br />
-                    Max number of guests: {place.maxGuests}
+                    Max number of guests: {place.max_guests}
                 </div>
                 <div>
                     <BookingWidget place={place} />

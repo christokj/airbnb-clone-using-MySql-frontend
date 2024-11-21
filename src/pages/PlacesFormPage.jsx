@@ -22,18 +22,19 @@ function PlacesFormPage() {
         if (!id) {
             return;
         }
-        axios.get('/places/' + id).then(response => {
+        axios.get('/places/' + title).then(response => {
             const { data } = response;
-            setTitle(data.title);
-            setAddress(data.address);
-            setAddedPhotos(data.photos);
-            setDescription(data.description);
-            setPerks(data.perks);
-            setExtraInfo(data.extraInfo);
-            setCheckIn(data.checkIn);
-            setCheckOut(data.checkOut);
-            setMaxGuests(data.maxGuests);
-            setPrice(data.price);
+            console.log(data)
+            setTitle(data[0].title);
+            setAddress(data[0].address);
+            setAddedPhotos(data[0].photos);
+            setDescription(data[0].description);
+            setPerks(data[0].perks);
+            setExtraInfo(data[0].extra_info);
+            setCheckIn(data[0].check_in);
+            setCheckOut(data[0].check_out);
+            setMaxGuests(data[0].maxGuests);
+            setPrice(data[0].price);
         });
     }, [id]);
     function inputHeader(text) {
@@ -57,13 +58,13 @@ function PlacesFormPage() {
     async function savePlace(ev) {
         ev.preventDefault();
         const placeData = {
-            title, address, addedPhotos, description,
+            id, title, address, addedPhotos, description,
             perks, extraInfo, checkIn, checkOut, maxGuests, price,
         }
         if (id) {
             // update
             await axios.put('/places', {
-                id, ...placeData
+                 ...placeData
             });
             setRedirect(true);
         } else {

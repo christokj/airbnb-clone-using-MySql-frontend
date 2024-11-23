@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import Lottie from 'lottie-react';
 import iconPlus from '../json/icons8-plus.json';
 import axios from 'axios';
-import AccountNav from '../AccountNav';
-import PlaceImg from '../PlaceImg';
+import AccountNav from '../components/User/AccountNav';
+import PlaceImg from '../components/Place/PlaceImg';
+
 
 function PlacesPage() {
     const [places, setPlaces] = useState([]);

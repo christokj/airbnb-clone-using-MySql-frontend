@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import Lottie from 'lottie-react';
-import iconSearch from './json/search.json';
-import iconMenu from './json/icons8-menu.json';
-import iconUser from './json/icons8-user-male.json';
+import iconSearch from '../json/search.json';
+import iconMenu from '../json/icons8-menu.json';
+import iconUser from '../json/icons8-user-male.json';
 import { Link } from 'react-router-dom';
-import { UserContext } from './UserContext';
+import { UserContext } from './Context/UserContext';
 
 function Header() {
     const { user } = useContext(UserContext);

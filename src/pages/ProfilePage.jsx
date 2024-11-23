@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { UserContext } from '../UserContext';
 import { Navigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { UserContext } from '../components/Context/UserContext';
+import AccountNav from '../components/User/AccountNav';
 import PlacesPage from './PlacesPage';
-import AccountNav from '../AccountNav';
+
 
 function ProfilePage() {
   const [redirect, setRedirect] = useState(null);
@@ -17,7 +18,6 @@ function ProfilePage() {
     setRedirect('/');
     setUser(null);
   }
-  console.log(ready, user, redirect)
  
   if (!ready && !user.length && !redirect) {
     return <Navigate to={'/login'} />

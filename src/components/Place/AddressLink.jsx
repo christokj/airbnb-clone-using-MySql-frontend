@@ -1,6 +1,6 @@
 import Lottie from 'lottie-react';
 import React from 'react';
-import iconLocation from './json/location.json';
+import iconLocation from '../../json/location.json';
 
 function AddressLink({ children, className = null }) {
   if (!className) {

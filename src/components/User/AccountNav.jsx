@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Lottie from 'lottie-react';
-import iconUser from './json/icons8-user-male.json';
-import iconHome from './json/icons8-home.json';
+import iconUser from '../../json/icons8-user-male.json';
+import iconHome from '../../json/icons8-home.json';
 
 function AccountNav() {
   const { pathname } = useLocation();

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Lottie from 'lottie-react';
-import iconPlus from './json/icons8-plus.json';
-import iconTrash from './json/delete.json';
+import iconPlus from '../../json/icons8-plus.json';
+import iconTrash from '../../json/delete.json';
 
 function PhotosUploader({ addedPhotos, onChange }) {
     const [photoLink, setPhotoLink] = useState('');

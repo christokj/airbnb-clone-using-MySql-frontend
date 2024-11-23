@@ -2,7 +2,7 @@ import React from 'react';
 import Image from './Image';
 
 function PlaceImg({ photos, index = 0, className = null }) {
-  if (!photos) {
+  if (!photos.length) {
     return '';
   }
   if (!className) {

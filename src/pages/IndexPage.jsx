@@ -1,18 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import PlaceImg from '../PlaceImg';
+import PlaceImg from '../components/Place/PlaceImg';
+import { UserContext } from '../components/Context/UserContext';
 
 function IndexPage() {
     const [places, setPlaces] = useState([]);
+    const { setUser, setReady, user, ready } = useContext(UserContext);
 
     // Fetch places on component mount
     useEffect(() => {
+        if (!user.length) {
+            axios.get('/profile')
+            .then(({ data }) => {
+                    console.log("first ")
+                    console.log('Fetched data:', data); 
+                    setUser(data);
+                    setReady(true); 
+                })
+                .catch((error) => {
+                    console.error("Error fetching profile:", error); // Log error
+                });
+                console.log(user.length, ready, user)
+            }
         axios.get('/places').then(response => {
             setPlaces(response.data);
         }).catch(err => {
             console.error('Error fetching places:', err);
         });
+
     }, []); // Empty dependency array ensures this runs only once
 
     return (
@@ -25,7 +41,7 @@ function IndexPage() {
                 } catch (err) {
                     console.error('Error parsing photos:', err);
                 }
-
+                console.log( photos)
                 return (
                     <Link to={`/place/${place.title}`} key={place.title}>
                         <div className="rounded-2xl bg-gray-500 flex">

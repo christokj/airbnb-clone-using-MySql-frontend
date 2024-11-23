@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import AccountNav from '../AccountNav';
-import PhotosUploader from '../PhotosUploader';
-import Perks from '../perks';
+
 import { Navigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import AccountNav from '../components/User/AccountNav';
+import PhotosUploader from '../components/Place/PhotosUploader';
+import Perk from '../components/Place/Perk';
 
 function PlacesFormPage() {
     const { id } = useParams();
@@ -95,7 +96,7 @@ function PlacesFormPage() {
                 <textarea value={description} onChange={ev => setDescription(ev.target.value)} />
                 {preInput('Perks', 'select all the perks')}
                 <div className='grid mt-2 gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-6'>
-                    <Perks selected={perks} onChange={setPerks} />
+                    <Perk selected={perks} onChange={setPerks} />
                 </div>
                 {preInput('Extra info', 'house rules, etc')}
                 <textarea value={extraInfo} onChange={ev => setExtraInfo(ev.target.value)} />

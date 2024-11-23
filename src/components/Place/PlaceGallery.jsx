@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./PlaceGallery.css";
 import Lottie from 'lottie-react';
-import iconClose from './json/Close.json';
+import iconClose from '../../json/Close.json';
 import Image from './Image';
 
 function PlaceGallery({ place }) {

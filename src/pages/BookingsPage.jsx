@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import AccountNav from '../AccountNav';
-// import PlaceImg from '../PlaceImg';
 import iconCard from '../json/credit card.json';
 import Lottie from 'lottie-react';
-import BookingDates from '../BookingDates';
 import axios from 'axios';
+import AccountNav from '../components/User/AccountNav';
+import BookingDates from '../components/Place/BookingDates';
 
 function BookingsPage() {
     const [bookings, setBookings] = useState([]);

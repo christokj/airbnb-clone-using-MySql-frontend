@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import BookingWidget from '../BookingWidget';
-import PlaceGallery from '../PlaceGallery';
-import AddressLink from '../AddressLink';
+import AddressLink from '../components/Place/AddressLink';
+import PlaceGallery from '../components/Place/PlaceGallery';
+import BookingWidget from '../components/Place/BookingWidget';
+
 
 function PlacePage() {
     const { title } = useParams();

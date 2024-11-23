@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
 import axios from 'axios';
 function SignUpPage() {
 
+    const navigate = useNavigate(); // Initialize navigate function
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -16,6 +17,8 @@ function SignUpPage() {
                 password,
             });
             alert('Sign up successfull. Now you can log in');
+            // Redirect to the login page
+            navigate('/login'); 
         } catch (e) {
             alert('Sign up failed. Please try again later');
         }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { differenceInCalendarDays, format } from 'date-fns';
 import Lottie from 'lottie-react';
-import iconCalendar from './json/calendar V3.json';
+import iconCalendar from '../../json/calendar V3.json';
 
 function BookingDates({ booking, className }) {
   return (

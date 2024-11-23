@@ -1,9 +1,9 @@
 import React from 'react';
 import Lottie from 'lottie-react';
-import iconWifi from './json/icon-wifi.json';
-import iconTv from './json/tv.json';
+import iconWifi from '../../json/icon-wifi.json';
+import iconTv from '../../json/tv.json';
 
-function perks({ selected, onChange }) {
+function Perk({ selected, onChange }) {
 
     function handleCbClick(ev) {
         const { checked, name } = ev.target;
@@ -56,4 +56,4 @@ function perks({ selected, onChange }) {
     );
 }
 
-export default perks;
+export default Perk;

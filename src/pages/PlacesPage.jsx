@@ -15,6 +15,7 @@ function PlacesPage() {
         axios.get('/user-places').then(({ data }) => {
             setPlaces(data);
         });
+    
     }
     }, []);
     let photos = [];
@@ -26,7 +27,6 @@ function PlacesPage() {
         } catch (err) {
             console.error('Error parsing photos:', err);
         }
-        console.log(photos, )
     }
     if (!places.length) {
         return (
@@ -55,11 +55,11 @@ function PlacesPage() {
             </div>
             <div>
                 {places.length > 0 && places.map(place => (
-                    <Link to={'/account/places/' + place.title} key={place.title} className='max-[500px]:flex-col flex cursor-pointer gap-4 bg-gray-100 p-4 rounded-2xl' >
+                    <Link to={'/account/places/' + place.id} key={place.title} className='max-[500px]:flex-col flex cursor-pointer gap-4 bg-gray-100 p-4 rounded-2xl' >
                         <div>
                             {place.photos?.[0] && (
                                 <div className='flex w-32 h-32 bg-gray-300 grow shrink-0 rounded-2xl'>
-                                    <PlaceImg photos={photos} />
+                                    <PlaceImg photos={photos[0]} />
                                 </div>
                             )}
                         </div>

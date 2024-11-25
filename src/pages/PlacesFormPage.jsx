@@ -25,7 +25,6 @@ function PlacesFormPage() {
         }
         axios.get('/places/' + title).then(response => {
             const { data } = response;
-            console.log(data)
             setTitle(data[0].title);
             setAddress(data[0].address);
             setAddedPhotos(data[0].photos);

@@ -7,7 +7,7 @@ import { RouterProvider } from 'react-router-dom';
 
 function App() {
 
-    axios.defaults.baseURL = 'http://localhost:4000/api/v1/user';
+    axios.defaults.baseURL = 'http://localhost:3000/api/v1/user';
     axios.defaults.withCredentials = true;
 
 

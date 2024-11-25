@@ -17,7 +17,6 @@ function LoginPage() {
             setRedirect(true);
         } catch (e) {
             alert('Login failed');
-            console.log(e);
         }
     }
     if (redirect) {

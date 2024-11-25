@@ -9,7 +9,6 @@ function PhotosUploader({ addedPhotos, onChange }) {
 
     let photos = [];
     if (addedPhotos) {
-        console.log(addedPhotos)
             try {
                 // Parse photos if it's a JSON string
                 photos = typeof addedPhotos === 'string' ? JSON.parse(addedPhotos) : addedPhotos;

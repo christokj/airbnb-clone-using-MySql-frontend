@@ -13,15 +13,12 @@ function IndexPage() {
         if (!user.length) {
             axios.get('/profile')
             .then(({ data }) => {
-                    console.log("first ")
-                    console.log('Fetched data:', data); 
                     setUser(data);
                     setReady(true); 
                 })
                 .catch((error) => {
                     console.error("Error fetching profile:", error); // Log error
                 });
-                console.log(user.length, ready, user)
             }
         axios.get('/places').then(response => {
             setPlaces(response.data);
@@ -41,13 +38,13 @@ function IndexPage() {
                 } catch (err) {
                     console.error('Error parsing photos:', err);
                 }
-                console.log( photos)
+               
                 return (
                     <Link to={`/place/${place.title}`} key={place.title}>
                         <div className="rounded-2xl bg-gray-500 flex">
                             {photos.length > 0 && (
                                 <PlaceImg
-                                    photos={photos}
+                                    photos={photos[0]}
                                     className="rounded-2xl object-cover aspect-square"
                                 />
                             )}

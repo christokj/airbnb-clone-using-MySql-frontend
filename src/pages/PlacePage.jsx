@@ -24,13 +24,11 @@ function PlacePage() {
         try {
             // Parse photos if it's a JSON string
             perks = typeof place.perks === 'string' ? JSON.parse(place.perks) : place.perk;
+            
         } catch (err) {
             console.error('Error parsing photos:', err);
         }
     }
-
-console.log(place )
-console.log(perks)
 
     return (
         <div className='max-sm:px-2 bg-gray-50 -mx-8 px-32 pt-8 -mt-4'>

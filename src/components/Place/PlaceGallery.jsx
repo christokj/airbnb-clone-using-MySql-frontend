@@ -53,7 +53,6 @@ function PlaceGallery({ place }) {
               onClick={() => setShowAllPhotos(true)}
               className="aspect-square cursor-pointer object-cover"
               src={photos[0]}
-              alt=""
             />
           </div>
         )}
@@ -65,8 +64,7 @@ function PlaceGallery({ place }) {
               <Image
                 onClick={() => setShowAllPhotos(true)}
                 className="aspect-square cursor-pointer object-cover"
-                src={photos[0]}
-                alt=""
+                src={photos[1]}
               />
             </div>
           )}
@@ -77,8 +75,7 @@ function PlaceGallery({ place }) {
               <Image
                 onClick={() => setShowAllPhotos(true)}
                 className="aspect-square cursor-pointer object-cover"
-                src={photos[0]}
-                alt=""
+                src={photos[2]}
               />
             </div>
           )}

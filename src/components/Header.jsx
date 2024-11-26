@@ -5,6 +5,7 @@ import iconMenu from "../json/icons8-menu.json";
 import iconUser from "../json/icons8-user-male.json";
 import { Link } from "react-router-dom";
 import { UserContext } from "./Context/UserContext";
+import axios from "axios";
 
 function Header() {
   const { user, setUser, setReady } = useContext(UserContext);

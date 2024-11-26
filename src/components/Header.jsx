@@ -1,33 +1,13 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import Lottie from "lottie-react";
 import iconSearch from "../json/search.json";
 import iconMenu from "../json/icons8-menu.json";
 import iconUser from "../json/icons8-user-male.json";
 import { Link } from "react-router-dom";
 import { UserContext } from "./Context/UserContext";
-import axios from "axios";
 
 function Header() {
-  const { user, setUser, setReady } = useContext(UserContext);
-
-  useEffect(() => {
-    if (!user.length) {
-      axios
-        .get("/profile")
-        .then(({ data }) => {
-          setUser(data);
-          setReady(true);
-          console.log(user)
-          console.log(data)
-        })
-        .catch((error) => {
-          console.error("Error fetching profile:", error); // Log error
-        });
-    }
-    console.log(user)
-    console.log("first ")
-  }, [])
-  
+  const { user } = useContext(UserContext);
   
   return (
     <header className="max-sm:p-4 flex justify-between border-b-2 sticky z-40 top-0 bg-gray-50 -mx-10 -mt-5 pt-1.5 h-20 px-12">

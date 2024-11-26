@@ -15,6 +15,8 @@ function Header() {
       .then(({ data }) => {
         setUser(data);
         setReady(true);
+        console.log(user)
+        console.log(data)
       })
       .catch((error) => {
         console.error("Error fetching profile:", error); // Log error
@@ -47,7 +49,7 @@ function Header() {
         </button>
       </div>
       <Link
-        to={user?.data?.success || user?.success ? "/account" : "/login"}
+        to={ user?.success ? "/account" : "/login"}
         className="flex h-10 mt-3 border border-gray-300 rounded-full px-4"
       >
         <Lottie className="w-4 me-2" animationData={iconMenu} />

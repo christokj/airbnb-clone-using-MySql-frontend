@@ -28,7 +28,7 @@ function BookingWidget({ place }) {
     );
   }
   async function bookThisPlace() {
-    const response = await axios.post("./bookings", {
+    await axios.post("/bookings", {
       check_in,
       check_out,
       number_of_guests,

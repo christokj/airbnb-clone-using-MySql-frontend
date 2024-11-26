@@ -9,7 +9,7 @@ import axios from "axios";
 
 function Header() {
   const { user, setUser, setReady } = useContext(UserContext);
-  
+
   useEffect(() => {
     if (!user) {
       axios
@@ -24,6 +24,8 @@ function Header() {
           console.error("Error fetching profile:", error); // Log error
         });
     }
+    console.log(user)
+    console.log("first ")
   }, [])
   
   

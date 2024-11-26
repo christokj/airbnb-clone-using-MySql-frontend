@@ -11,7 +11,7 @@ function Header() {
   const { user, setUser, setReady } = useContext(UserContext);
 
   useEffect(() => {
-    if (!user) {
+    if (!user.length) {
       axios
         .get("/profile")
         .then(({ data }) => {

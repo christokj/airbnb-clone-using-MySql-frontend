@@ -7,7 +7,7 @@ import { UserContext } from "../components/Context/UserContext";
 function IndexPage() {
   const [places, setPlaces] = useState([]);
   const [photos, setPhotos] = useState([]);
-  const { setUser, setReady, user, ready } = useContext(UserContext);
+  const { setUser, setReady, user } = useContext(UserContext);
 
   // Fetch places on component mount
   useEffect(() => {

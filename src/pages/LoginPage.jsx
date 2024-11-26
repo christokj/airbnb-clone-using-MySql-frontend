@@ -29,7 +29,6 @@ function LoginPage() {
     } catch (e) {
       alert("Login failed");
     }
-
   }
   if (redirect) {
     return <Navigate to={"/"} />;

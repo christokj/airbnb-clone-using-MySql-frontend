@@ -7,8 +7,18 @@ import { Link } from "react-router-dom";
 import { UserContext } from "./Context/UserContext";
 
 function Header() {
-  const { user } = useContext(UserContext);
-  console.log(user)
+  const { user, setUser, setReady } = useContext(UserContext);
+  if (!user.data) {
+    axios
+      .get("/profile")
+      .then(({ data }) => {
+        setUser(data);
+        setReady(true);
+      })
+      .catch((error) => {
+        console.error("Error fetching profile:", error); // Log error
+      });
+  }
   return (
     <header className="max-sm:p-4 flex justify-between border-b-2 sticky z-40 top-0 bg-gray-50 -mx-10 -mt-5 pt-1.5 h-20 px-12">
       <div className="headerLogo">
@@ -36,7 +46,7 @@ function Header() {
         </button>
       </div>
       <Link
-        to={user.data.success || user.success ? "/account" : "/login"}
+        to={user?.data?.success || user?.success ? "/account" : "/login"}
         className="flex h-10 mt-3 border border-gray-300 rounded-full px-4"
       >
         <Lottie className="w-4 me-2" animationData={iconMenu} />

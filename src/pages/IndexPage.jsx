@@ -7,21 +7,11 @@ import { UserContext } from "../components/Context/UserContext";
 function IndexPage() {
   const [places, setPlaces] = useState([]);
   const [photos, setPhotos] = useState([]);
-  const { setUser, setReady, user } = useContext(UserContext);
+  // const { setUser, setReady, user } = useContext(UserContext);
 
   // Fetch places on component mount
   useEffect(() => {    
-    if (!user.data) {
-      axios
-        .get("/profile")
-        .then(({ data }) => {
-          setUser(data);
-          setReady(true);
-        })
-        .catch((error) => {
-          console.error("Error fetching profile:", error); // Log error
-        });
-    }
+    
     if (!places.length) {
       axios
         .get("/places")

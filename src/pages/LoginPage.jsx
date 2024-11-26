@@ -15,8 +15,6 @@ function LoginPage() {
       setUser(data);
       setRedirect(true);
       alert("Login successful");
-      console.log(data)
-      console.log(redirect)
     } catch (e) {
       alert("Login failed");
     }

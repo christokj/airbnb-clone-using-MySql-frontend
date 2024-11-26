@@ -10,7 +10,7 @@ function IndexPage() {
   const { setUser, setReady, user } = useContext(UserContext);
 
   // Fetch places on component mount
-  useEffect(() => {
+  useEffect(() => {    
     if (!user.length) {
       axios
         .get("/profile")

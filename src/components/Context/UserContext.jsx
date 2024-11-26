@@ -10,7 +10,7 @@ export function UserContextProvider({ children }) {
     <UserContext.Provider value={{ user, setUser, ready, setReady }}>
       {children}
     </UserContext.Provider>
-  );
+  ); 
 }
 
 // export default UserContext

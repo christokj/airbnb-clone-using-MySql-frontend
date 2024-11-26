@@ -35,7 +35,7 @@ function Header() {
         </button>
       </div>
       <Link
-        to={user ? "/account" : "/login"}
+        to={user.success ? "/account" : "/login"}
         className="flex h-10 mt-3 border border-gray-300 rounded-full px-4"
       >
         <Lottie className="w-4 me-2" animationData={iconMenu} />

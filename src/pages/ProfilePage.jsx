@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../components/Context/UserContext";
 import AccountNav from "../components/User/AccountNav";
 import PlacesPage from "./PlacesPage";
 
 function ProfilePage() {
-  const [redirect, setRedirect] = useState(null);
+  const navigate = useNavigate();
   const { user, ready, setUser } = useContext(UserContext);
   let { subpage } = useParams();
   if (subpage === undefined) {
@@ -14,23 +14,23 @@ function ProfilePage() {
   }
   async function logout() {
     await axios.post("/logout");
-    setRedirect("/");
-    setUser(null);
+    setUser((prevUser) => ({
+      ...prevUser, // Copy existing properties
+      success: false, // Update the success property
+    }));
+    navigate("/", { replace: true });
   }
 
-  if (!ready && !user.length && !redirect) {
-    return <Navigate to={"/login"} />;
+  if (!ready && !user.success ) {
+    navigate("/login", { replace: true });
   }
 
-  if (redirect) {
-    return <Navigate to={redirect} />;
-  }
   return (
     <div>
       <AccountNav />
-      {subpage === "profile" && (
+      {subpage === "profile" && user.success && (
         <div className="text-center max-w-lg mx-auto my-5">
-          Logged in as {user.data.email} <br />
+          Logged in as {user?.data?.email} <br />
           <button onClick={logout} className="primary max-w-sm mt-2">
             Logout
           </button>

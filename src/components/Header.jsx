@@ -8,6 +8,7 @@ import { UserContext } from "./Context/UserContext";
 
 function Header() {
   const { user } = useContext(UserContext);
+  console.log(user)
   return (
     <header className="max-sm:p-4 flex justify-between border-b-2 sticky z-40 top-0 bg-gray-50 -mx-10 -mt-5 pt-1.5 h-20 px-12">
       <div className="headerLogo">

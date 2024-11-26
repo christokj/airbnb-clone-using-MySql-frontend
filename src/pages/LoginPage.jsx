@@ -11,10 +11,10 @@ function LoginPage() {
   async function handleLoginSubmit(event) {
     event.preventDefault();
     try {
-      const { data } = await axios.post("/login", { email, password });
+      const data = await axios.post("/login", { email, password });
       setUser(data);
-      alert("Login successful");
       setRedirect(true);
+      alert("Login successful");
     } catch (e) {
       alert("Login failed");
     }

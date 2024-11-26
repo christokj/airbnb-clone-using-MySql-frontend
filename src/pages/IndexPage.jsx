@@ -11,7 +11,7 @@ function IndexPage() {
 
   // Fetch places on component mount
   useEffect(() => {    
-    if (!user.length) {
+    if (!user.data) {
       axios
         .get("/profile")
         .then(({ data }) => {

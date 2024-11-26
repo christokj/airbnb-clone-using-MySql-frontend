@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import axios from "axios";
-import { ErrorPage } from "../components/User/ErrorPage";
+// import { ErrorPage } from "../components/User/ErrorPage";
 import IndexPage from "../pages/IndexPage";
 import LoginPage from "../pages/LoginPage";
 import SignUpPage from "../pages/SignUpPage";
@@ -21,9 +21,9 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement: <ErrorPage />,
+    // errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <IndexPage /> },
+      { path: "", element: <IndexPage /> },
       { path: "login", element: <LoginPage /> },
       { path: "signUp", element: <SignUpPage /> },
       { path: "account", element: <ProfilePage /> },

@@ -15,18 +15,6 @@ function PlacesPage() {
       });
     }
   }, []);
-  let photos = [];
-  if (places.length) {
-    try {
-      // Parse photos if it's a JSON string
-      photos =
-        typeof places[0].photos === "string"
-          ? JSON.parse(places[0].photos)
-          : places[0].photos;
-    } catch (err) {
-      console.error("Error parsing photos:", err);
-    }
-  }
   if (!places.length) {
     return (
       <div className="text-center">
@@ -65,11 +53,9 @@ function PlacesPage() {
               className="max-[500px]:flex-col flex cursor-pointer gap-4 bg-gray-100 p-4 rounded-2xl"
             >
               <div>
-                {place.photos?.[0] && (
                   <div className="flex w-32 h-32 bg-gray-300 grow shrink-0 rounded-2xl">
-                    <PlaceImg photos={photos[0]} />
+                    <PlaceImg photos={place.photos} index={1} />
                   </div>
-                )}
               </div>
               <div className="grow-0 shrink">
                 <h2 className="text-xl">{place.title}</h2>

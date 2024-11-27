@@ -21,7 +21,6 @@ function LoginPage() {
         .then(({ data }) => {
           setUser(data);
           setReady(true);
-          console.log(data)
         })
         .catch((error) => {
           console.error("Error fetching profile:", error); // Log error

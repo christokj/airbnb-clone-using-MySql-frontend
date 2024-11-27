@@ -6,16 +6,16 @@ import PlaceGallery from "../components/Place/PlaceGallery";
 import BookingWidget from "../components/Place/BookingWidget";
 
 function PlacePage() {
-  const { title } = useParams();
+  const { id } = useParams();
   const [place, setPlace] = useState(null);
   useEffect(() => {
-    if (!title) {
+    if (!id) {
       return;
     }
-    axios.get(`/places/${title}`).then((response) => {
+    axios.get(`/places/${id}`).then((response) => { 
       setPlace(response.data);
     });
-  }, [title]);
+  }, [id]);
   if (!place) return "";
 
   let perks = [];
@@ -58,7 +58,7 @@ function PlacePage() {
           <div className="font-semibold text-black text-2xl">
             <h2>Perks</h2>
           </div>
-          {perks.length && perks.map((perk) => <div key={perk}> - {perk}</div>)}
+          {perks.length > 0 && perks.map((perk) => <div key={perk}> - {perk}</div>)}
         </div>
       </div>
     </div>

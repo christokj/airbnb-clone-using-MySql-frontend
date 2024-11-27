@@ -2,16 +2,15 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import PlaceImg from "../components/Place/PlaceImg";
-// import { UserContext } from "../components/Context/UserContext";
+import { UserContext } from "../components/Context/UserContext";
+import { axiosInstance } from "../config/axiosInstance";
 
 function IndexPage() {
   const [places, setPlaces] = useState([]);
-  const [photos, setPhotos] = useState([]);
-  // const { setUser, setReady, user } = useContext(UserContext);
+  const { setUser, user} = useContext(UserContext);
 
   // Fetch places on component mount
-  useEffect(() => {    
-    
+  useEffect(() => {
     if (!places.length) {
       axios
         .get("/places")
@@ -22,27 +21,28 @@ function IndexPage() {
           console.error("Error fetching places:", err);
         });
     }
-
-    if (places.length > 0) {
-      // Parse photos if it's a JSON string
-      let images =
-        typeof places[0].photos === "string"
-          ? JSON.parse(places[0].photos)
-          : places[0].photos;
-      setPhotos(images);
+    if (!user.success) {
+      axiosInstance
+      .get("/profile")
+      .then(({ data }) => {
+        setUser(data);
+        setReady(true);
+      })
+      .catch((error) => {
+        console.error("Error fetching profile:", error); // Log error
+      });
     }
   }, [places]); // Empty dependency array ensures this runs only once
-
   return (
     <div className="mt-4 grid gap-x-6 gap-y-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {places.length > 0 &&
-        photos.length > 0 &&
         places.map((place) => {
           return (
-            <Link to={`/place/${place.title}`} key={place.title}>
+            <Link to={`/place/${place.id}`} key={place.id}>
               <div className="rounded-2xl bg-gray-500 flex">
                 <PlaceImg
-                  photos={photos[0]}
+                  photos={place.photos}
+                  index={1}
                   className="rounded-2xl object-cover aspect-square"
                 />
               </div>

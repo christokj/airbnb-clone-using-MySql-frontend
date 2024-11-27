@@ -23,18 +23,18 @@ function PlacesFormPage() {
     if (!id) {
       return;
     }
-    axios.get("/places/" + title).then((response) => {
+    axios.get("/places/" + id).then((response) => {
       const { data } = response;
-      setTitle(data[0].title);
-      setAddress(data[0].address);
-      setAddedPhotos(data[0].photos);
-      setDescription(data[0].description);
-      setPerks(data[0].perks);
-      setExtraInfo(data[0].extra_info);
-      setCheckIn(data[0].check_in);
-      setCheckOut(data[0].check_out);
-      setMaxGuests(data[0].maxGuests);
-      setPrice(data[0].price);
+      setTitle(data.title);
+      setAddress(data.address);
+      setAddedPhotos(JSON.parse(data.photos));
+      setDescription(data.description);
+      setPerks(data.perks);
+      setExtraInfo(data.extra_info);
+      setCheckIn(data.check_in);
+      setCheckOut(data.check_out);
+      setMaxGuests(data.maxGuests);
+      setPrice(data.price);
     });
   }, [id]);
   function inputHeader(text) {
@@ -68,9 +68,7 @@ function PlacesFormPage() {
     };
     if (id) {
       // update
-      await axios.put("/places", {
-        ...placeData,
-      });
+      await axios.put("/places", placeData);
       setRedirect(true);
     } else {
       // new place
@@ -81,14 +79,13 @@ function PlacesFormPage() {
   if (redirect) {
     return <Navigate to={"/account/places"} />;
   }
-
   return (
     <div>
       <AccountNav />
       <form onSubmit={savePlace}>
         {preInput(
           "Title",
-          "Title for your place. should be short and catchy as in advertisment",
+          "Title for your place. should be short and catchy as in advertisment"
         )}
         <input
           type="text"
@@ -121,7 +118,7 @@ function PlacesFormPage() {
         />
         {preInput(
           "Check in&out times",
-          "add check in and out times, remember to have some time window for cleaning the room between guests",
+          "add check in and out times, remember to have some time window for cleaning the room between guests"
         )}
         <div className="grid gap-2 grid-cols-2 md:grid-cols-4">
           <div>

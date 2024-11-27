@@ -15,9 +15,10 @@ function LoginPage() {
   async function handleLoginSubmit(event) {
     event.preventDefault();
     try {
-      await axios.post("/login", { email, password });
+      const res = await axios.post("/login", { email, password });
       setRedirect(true);
-      axios
+      if (res) {
+        axios
         .get("/profile")
         .then(({ data }) => {
           setUser(data);
@@ -27,6 +28,7 @@ function LoginPage() {
         .catch((error) => {
           console.error("Error fetching profile:", error); // Log error
         });
+      }
       alert("Login successful");
 
     } catch (e) {

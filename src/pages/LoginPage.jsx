@@ -10,6 +10,8 @@ function LoginPage() {
 
   const { setUser, setReady } = useContext(UserContext);
 
+  axios.defaults.withCredentials = true;
+
   async function handleLoginSubmit(event) {
     event.preventDefault();
     try {

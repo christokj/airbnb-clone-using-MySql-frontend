@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import { Link, Navigate } from "react-router-dom";
 import { UserContext } from "../components/Context/UserContext";
+import { axiosInstance } from "../config/axiosInstance";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -10,15 +10,13 @@ function LoginPage() {
 
   const { setUser, setReady } = useContext(UserContext);
 
-  axios.defaults.withCredentials = true;
-
   async function handleLoginSubmit(event) {
     event.preventDefault();
     try {
-      const res = await axios.post("/login", { email, password });
+      const res = await axiosInstance.post("/login", { email, password });
       setRedirect(true);
       if (res) {
-        axios
+        axiosInstance
         .get("/profile")
         .then(({ data }) => {
           setUser(data);
@@ -28,8 +26,8 @@ function LoginPage() {
         .catch((error) => {
           console.error("Error fetching profile:", error); // Log error
         });
+        alert("Login successful");
       }
-      alert("Login successful");
 
     } catch (e) {
       alert("Login failed");

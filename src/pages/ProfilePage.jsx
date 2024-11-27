@@ -6,7 +6,10 @@ import AccountNav from "../components/User/AccountNav";
 import PlacesPage from "./PlacesPage";
 
 function ProfilePage() {
+  axios.defaults.withCredentials = true;
+
   const navigate = useNavigate();
+  
   const { user, ready, setUser } = useContext(UserContext);
   let { subpage } = useParams();
   if (subpage === undefined) {
